@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 using TrainTable.BLL.Services.Interfaces;
 using TrainTable.DAL;
@@ -72,22 +71,22 @@ namespace TrainTable.BLL.Services
 
             if (train.Departure == default)
             {
-                throw new Exception("Train name cannot be empty.");
+                throw new Exception("Departure cannot be empty.");
             }
 
             if (train.Destination == default)
             {
-                throw new Exception("Train name cannot be empty.");
+                throw new Exception("Destination cannot be empty.");
             }
 
             if (IsStartDateGreaterEndDate(train))
             {
-                throw new Exception("The start date of the event must not be greater than the end date of the event.");
+                throw new Exception("The depature date must not be greater than the destination date.");
             }
 
             if (IsStartOrEndDateLessDateNow(train))
             {
-                throw new Exception("The start or end date of the event must not be less than today's date.");
+                throw new Exception("The depature or destination date must not be less than today's date.");
             }
         }
 
