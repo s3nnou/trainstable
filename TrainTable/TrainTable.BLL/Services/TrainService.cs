@@ -62,7 +62,7 @@ namespace TrainTable.BLL.Services
         {
             if (train == null)
             {
-                throw new ArgumentNullException("train", "Value cannot be null.")
+                throw new ArgumentNullException("train", "Value cannot be null.");
             }
 
             if (string.IsNullOrEmpty(train.Name))
