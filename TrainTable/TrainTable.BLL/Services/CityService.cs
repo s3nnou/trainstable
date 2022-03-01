@@ -61,7 +61,7 @@ namespace TrainTable.BLL.Services
         {
             if (city == null)
             {
-                throw new ArgumentNullException("city", "Value cannot be null.");
+                throw new ArgumentNullException(nameof(city));
             }
 
             if (string.IsNullOrEmpty(city.Name))
