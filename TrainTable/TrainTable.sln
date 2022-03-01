@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32112.339
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTable.DAL", "TrainTable.DAL\TrainTable.DAL.csproj", "{582CC347-9F6D-452F-987D-6B894A933573}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainTable.DAL", "TrainTable.DAL\TrainTable.DAL.csproj", "{582CC347-9F6D-452F-987D-6B894A933573}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TrainTable.Database", "TrainTable.Database\TrainTable.Database.sqlproj", "{5ED2E792-DE39-47A8-AAFA-848BF177814B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTable.BLL", "TrainTable.BLL\TrainTable.BLL.csproj", "{F60B030F-313A-41BC-BE32-F84425C9E900}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTable.UI", "TrainTable.UI\TrainTable.UI.csproj", "{57F0A2E5-ABF1-43DD-9840-D0398DBC5554}"
 EndProject
@@ -15,16 +17,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{958E823B-2F9E-47BB-8551-CCD17AAC8BD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{958E823B-2F9E-47BB-8551-CCD17AAC8BD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{958E823B-2F9E-47BB-8551-CCD17AAC8BD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{958E823B-2F9E-47BB-8551-CCD17AAC8BD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{582CC347-9F6D-452F-987D-6B894A933573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{582CC347-9F6D-452F-987D-6B894A933573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{582CC347-9F6D-452F-987D-6B894A933573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{582CC347-9F6D-452F-987D-6B894A933573}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5ED2E792-DE39-47A8-AAFA-848BF177814B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5ED2E792-DE39-47A8-AAFA-848BF177814B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ED2E792-DE39-47A8-AAFA-848BF177814B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{5ED2E792-DE39-47A8-AAFA-848BF177814B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED2E792-DE39-47A8-AAFA-848BF177814B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5ED2E792-DE39-47A8-AAFA-848BF177814B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F60B030F-313A-41BC-BE32-F84425C9E900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F60B030F-313A-41BC-BE32-F84425C9E900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F60B030F-313A-41BC-BE32-F84425C9E900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F60B030F-313A-41BC-BE32-F84425C9E900}.Release|Any CPU.Build.0 = Release|Any CPU
 		{57F0A2E5-ABF1-43DD-9840-D0398DBC5554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{57F0A2E5-ABF1-43DD-9840-D0398DBC5554}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F0A2E5-ABF1-43DD-9840-D0398DBC5554}.Release|Any CPU.ActiveCfg = Release|Any CPU
