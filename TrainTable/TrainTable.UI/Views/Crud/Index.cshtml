@@ -1,0 +1,93 @@
+﻿@using TrainTable.UI.Models.Home
+@model List<TrainInfo>
+
+<h1>База поездов</h1>
+<div>
+    <div class="form-group card">
+        <a class="btn btn-success" asp-action="CreateEditRoute" asp-route-id="0">Добавить поезд<br /></a>
+    </div>
+    <br />
+    <div>
+        <h3>Поиск</h3>
+        @using (Html.BeginForm())
+        {
+            <p>
+                <div class="form-group card">
+
+                    @Html.TextBox("SearchString")
+                    <input type="submit" class="btn btn-primary" value="Найти" />
+
+                </div>
+            </p>
+        }
+
+    </div>
+    <br />
+</div>
+
+ <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Название</th>
+                <th scope="col">Тип</th>
+                <th scope="col">Отбытие</th>
+                <th scope="col">Прибытие</th>
+                <th scope="col">Время в пути</th>
+                <th scope="col">Действие</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+            var info = Model[i];
+
+            <tr>
+                <td>
+                    <h4>
+                        @info.Name
+                    </h4>
+                </td>
+                <td>
+                    <h4>
+                        @info.Type
+                    </h4>
+                </td>
+                <td>
+                    <h4>
+                        @info.DepertureTime
+                    </h4>
+                    <h5>
+                        @info.Departure
+                    </h5>
+
+                </td>
+                <td>
+                    <h4>
+                        @info.DestinationTime
+                    </h4>
+                    <h5>
+                        @info.Destination
+                    </h5>
+                </td>
+
+                <td>
+                    <h4>
+                        @info.Time
+                    </h4>
+                </td>
+               
+            <td>
+                <a class="btn btn-light" asp-action="CreateEditRoute" asp-route-id="@info.Id">Редактировать</a>
+                <a class="btn btn-light" asp-action="Delete" asp-route-id="@info.Id">Удалить</a>
+
+            </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

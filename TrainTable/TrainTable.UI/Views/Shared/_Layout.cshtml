@@ -16,15 +16,51 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("Manager"))
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a asp-controller="Account" asp-action="Logout">Выйти</a></li>
+                                <li><a asp-area="" asp-controller="Manager" asp-action="StatisticsOne"> Статистика</a></li>
+                                <li><a asp-area="" asp-controller="Manager" asp-action="Index"> Управление базой</a></li>
+                                <li><a asp-area="" asp-controller="UserManager" asp-action="Index"> Управление аккаунтами</a></li>
+
+                            </ul>
+                        }
+                        @if (User.IsInRole("User"))
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a asp-controller="Account" asp-action="Logout">Выйти</a></li>
+                                <li><a asp-controller="Favorites" asp-action="Favorites">Израбнные поезда</a></li>
+                                <li><a asp-area="" asp-controller="Account" asp-action="Profile"> Профиль</a></li>
+                            </ul>
+                        }
+                        @if (User.IsInRole("Operator"))
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a asp-controller="Account" asp-action="Logout">Выйти</a></li>
+                                <li><a asp-area="" asp-controller="Order" asp-action="Index"> Профиль</a></li>
+                            </ul>
+                        }
+                        @if (User.IsInRole("Driver"))
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a asp-controller="Account" asp-action="Logout">Выйти</a></li>
+                                <li><a asp-area="" asp-controller="Driver" asp-action="Index"> Профиль</a></li>
+                            </ul>
+                        }
+
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a asp-controller="Account" asp-action="Register"><span class="glyphicon glyphicon-user"></span> Зарегистироваться</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+                        </ul>
+                    }
+
                 </div>
             </div>
         </nav>

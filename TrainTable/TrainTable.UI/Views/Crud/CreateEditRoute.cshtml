@@ -1,0 +1,60 @@
+﻿@using WebUI.Models
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-en_US.js"></script>
+</head>
+
+@model CreateEditRouteModel
+<h1>Работа с Маршрутами</h1>
+
+<form method="post" enctype="multipart/form-data">
+    @Html.HiddenFor(model => Model.Id)
+
+    <label сlass="control-label">Название</label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+    <label сlass="control-label">Время отправления</label>
+    <input asp-for="StartTime" class="form-control" />
+    <span asp-validation-for="StartTime" class="text-danger"></span>
+
+    <label сlass="control-label">Время прибытия</label>
+    <input asp-for="EndTime" class="form-control" />
+    <span asp-validation-for="EndTime" class="text-danger"></span>
+    <br />
+
+    <label сlass="control-label">Город отправления</label>
+    <br />
+
+    <select class="selectpicker" data-live-search="true" asp-for="@Model.FromCityId" asp-items="@Model.CitiesFrom">
+        >
+        <option>Выберите</option>
+    </select>
+    <br />
+    <br />
+
+    <label сlass="control-label">Город прибытия</label>
+    <br />
+
+    <select class="selectpicker" data-live-search="true" asp-for="@Model.ToCityId" asp-items="@Model.CitiesTo">
+        >
+        <option>Выберите</option>
+    </select>
+    <br />
+    <div class="form-group card" style="margin-top: 2em;">
+
+        <input type="submit" value="Выбрать" class="btn btn-primary" />
+
+    </div>
+
+</form>
+

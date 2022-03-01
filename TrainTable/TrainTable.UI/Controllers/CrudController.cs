@@ -14,7 +14,7 @@ using WebUI.Models;
 
 namespace TrainTable.UI.Controllers
 {
-    public class HomeController : Controller
+    public class CrudController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IService<Train> _trainService;
@@ -22,7 +22,7 @@ namespace TrainTable.UI.Controllers
         private readonly IService<FavoriteTrain> _favoriteTrainService;
         private readonly UserManager<User> _userManager;
 
-        public HomeController(ILogger<HomeController> logger,
+        public CrudController(ILogger<HomeController> logger,
             IService<Train> trainService,
             IService<City> cityService,
             UserManager<User> userManager,
@@ -35,7 +35,33 @@ namespace TrainTable.UI.Controllers
             _favoriteTrainService = favoriteTrainService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            var routes = _trainService.ReadAll();
+            var list = new List<TrainInfo>();
+            foreach (var route in routes)
+            {
+                var cityFrom = await _cityService.ReadById(route.DepartureId);
+                var cityTo = await _cityService.ReadById(route.DestinationId);
+
+                list.Add(new TrainInfo
+                {
+                    Departure = cityFrom.Name,
+                    DepertureTime = route.DepartureTime,
+                    Destination = cityTo.Name,
+                    DestinationTime = route.DestinationTime,
+                    Id = route.Id,
+                    Name = route.Name,
+                    Type = route.TypeId,
+                    Time = route.DepartureTime.Subtract(route.DestinationTime),
+                });
+            }
+
+            return View(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateEditRoute(int id)
         {
             var cities = _cityService.ReadAll();
 
@@ -48,60 +74,37 @@ namespace TrainTable.UI.Controllers
                     Text = city.Name,
                     Value = city.Id.ToString(),
                 });
-            };
-
-            return View(new TimeTableModel
-            {
-                FromCities = list,
-                ToCities = list,
-            });
-        }
-
-        public async Task<IActionResult> Table(int city1, int city2)
-        {
-            var routes = _trainService.ReadAll();
-            var list = new List<TrainInfo>();
-            foreach (var route in routes)
-            {
-                var cityFrom = await _cityService.ReadById(city1);
-                var cityTo = await _cityService.ReadById(city2);
-
-                list.Add(new TrainInfo
-                {
-                    Departure = cityFrom.Name,
-                    DepertureTime = route.DepartureTime,
-                    Destination = cityTo.Name,
-                    DestinationTime = route.DestinationTime,
-                    Id = route.Id,
-                    Name = route.Name,
-                    Type = route.TypeId,
-                    Time = route.DepartureTime.Subtract(route.DestinationTime) ,
-                });
             }
 
-            return PartialView(list);
-        }
+            if (id == 0)
+            {
+                var model = new CreateEditRouteModel
+                {
+                    CitiesFrom = list,
+                    CitiesTo = list,
 
-        public async Task<IActionResult> Add(int id)
-        {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                };
 
-            var ids = _favoriteTrainService.ReadAll().Count() + 1;
+                return View(model);
+            }
+            else
+            {
+                var route = await _trainService.ReadById(id);
 
-            await _favoriteTrainService.Create(new FavoriteTrain { Id = ids, TrainId = id, UserId = user.Id });
+                var model = new CreateEditRouteModel
+                {
+                    CitiesFrom = list,
+                    CitiesTo = list,
+                    Id = route.Id,
+                    FromCityId = route.DepartureId,
+                    EndTime = route.DestinationTime,
+                    Name = route.Name,
+                    StartTime = route.DepartureTime,
+                    ToCityId = route.DestinationId,
+                };
 
-            return View("Index");
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                return View(model);
+            }
         }
     }
 }

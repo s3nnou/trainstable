@@ -9,14 +9,14 @@ namespace TrainTable.DAL.Models
 
         public string Name { get; set; }
 
-        public int Departure { get; set; }
+        public int DepartureId { get; set; }
 
-        public int Destination { get; set; }
+        public int DestinationId { get; set; }
 
-        public DateTime DepertureTime { get; set; }
+        public DateTime DepartureTime { get; set; }
 
         public DateTime DestinationTime { get; set; }
 
-        public TrainType Type { get; set; }
+        public TrainType TypeId { get; set; }
     }
 }

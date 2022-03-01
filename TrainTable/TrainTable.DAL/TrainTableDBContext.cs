@@ -28,8 +28,8 @@ namespace TrainTable.DAL
             base.OnModelCreating(builder);
             builder.Entity<Train>().ToTable("Train");
             builder.Entity<City>().ToTable("City");
-            builder.Entity<FavoriteTrain>().ToTable("FavoriteTrains");
-            builder.Entity<User>().ToTable("-AspNetUsers");
+            builder.Entity<FavoriteTrain>().ToTable("FavoriteTrain");
+            builder.Entity<User>().ToTable("AspNetUsers");
         }
     }
 }
