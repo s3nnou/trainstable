@@ -13,3 +13,12 @@ VALUES (N'2a895c9d-68e9-43a9-97d6-be503180140d', N'user@tut.by', N'USER@TUT.BY',
 INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'f5357fa0-a697-4afe-9bb1-ee2694c5dceb', N'0a36dc88-f474-4bb9-83fe-c9e513d13471'),
 (N'2a895c9d-68e9-43a9-97d6-be503180140d', N'f9cbb24a-d1c6-4317-aba5-d6f896c3f479'),
 (N'ee1550e7-01fc-413e-82f5-4aae491102d7', N'f9cbb24a-d1c6-4317-aba5-d6f896c3f479')
+
+--- City
+Insert [dbo].City ([Id], [Name]) VALUES (1, N'Минск'),
+(2, N'Гомель')
+
+--- City
+Insert [dbo].Train([Id], [Name], [TypeId], DepartureId, DepartureTime, DestinationId, DestinationTime) 
+VALUES (1, N'Минск-Гомель', 1, 1, cast('2011-11-11 10:00' as datetime),2, cast('2011-11-11 14:00' as datetime)),
+(2, N'Гомель-Минск', 1, 2, cast('2011-11-11 10:00' as datetime),1, cast('2014-11-11 10:00' as datetime))
