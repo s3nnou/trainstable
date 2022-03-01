@@ -1,8 +1,98 @@
-﻿@{
+﻿@using WebUI.Models
+@{
     ViewData["Title"] = "Home Page";
 }
 
+
+@model TimeTableModel;
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-en_US.js"></script>
+</head>
+
+<style>
+    select :disabled.red {
+        color: red;
+    }
+</style>
+<div class="bg-image"></div>
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1>
+        Поезда Беларуси
+    </h1>
+    <h3>
+        Sample text
+    </h3>
+    <br />
 </div>
+
+
+<div id="container">
+</div>
+
+<div class="text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <select id="select1" class="selectpicker" data-live-search="true" asp-items="@Model.FromCities">
+                    <option value="" disabled selected>Откуда</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <select id="select2" class="selectpicker" asp-items="@Model.FromCities">
+                    <option value="" disabled selected class="text-black-50">Куда</option>
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <input type="date" id="example" class="form-control">
+
+            </div>
+            <div class="col-sm-3">
+                <button id="success" type="button" class="btn btn-primary btn-block">Найти</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<div id="container">
+</div>
+
+
+<script>
+
+
+    $("#success").click(function (e) {
+        var city1 = $('#select1').val();
+        var city2 = $('#select2').val();
+
+
+        var data = JSON.stringify({
+            
+        });
+
+        $.ajax(
+            {
+                type: "POST",
+                url: "Home/Table",
+                data: { city1, city2},
+            }).done(function (result) {
+                console.log(result)
+                $('#container').html(result);
+            });
+
+    });
+
+</script>

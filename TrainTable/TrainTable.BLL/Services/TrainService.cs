@@ -69,12 +69,12 @@ namespace TrainTable.BLL.Services
                 throw new Exception("Train name cannot be empty.");
             }
 
-            if (train.Departure == default)
+            if (train.DepartureId == default)
             {
                 throw new Exception("Departure cannot be empty.");
             }
 
-            if (train.Destination == default)
+            if (train.DestinationId == default)
             {
                 throw new Exception("Destination cannot be empty.");
             }
@@ -92,13 +92,13 @@ namespace TrainTable.BLL.Services
 
         private bool IsStartDateGreaterEndDate(Train train)
         {
-            var isStartDateGreaterEndDate = train.DepertureTime > train.DestinationTime;
+            var isStartDateGreaterEndDate = train.DepartureTime > train.DestinationTime;
             return isStartDateGreaterEndDate;
         }
 
         private bool IsStartOrEndDateLessDateNow(Train train)
         {
-            var isStartOrEndDateLessDateNow = (train.DepertureTime < DateTimeOffset.Now) || (train.DestinationTime < DateTimeOffset.Now);
+            var isStartOrEndDateLessDateNow = (train.DepartureTime < DateTimeOffset.Now) || (train.DestinationTime < DateTimeOffset.Now);
             return isStartOrEndDateLessDateNow;
         }
     }
